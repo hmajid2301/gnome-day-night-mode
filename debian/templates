@@ -1,7 +1,12 @@
+Template: gnome-day-night-mode/user
+Type: string
+Description: The user:
+ The user to set the day/night cycler for.
+
 Template: gnome-day-night-mode/location
 Type: string
 Description: Your location:
- The city you currently live in i.e. `London
+ The city you currently live in i.e. `London`
 
 Template: gnome-day-night-mode/day_mode_theme
 Type: string

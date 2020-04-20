@@ -22,6 +22,8 @@ set -e
 case "$1" in
     configure)
 
+        db_get gnome-day-night-mode/user
+        user=$RET
         db_get gnome-day-night-mode/location
         location=$RET
         db_get gnome-day-night-mode/day_mode_theme
@@ -34,10 +36,10 @@ case "$1" in
         night_mode_wallpaper=$RET
 
         chmod -R 744 /usr/share/gnome-day-night-mode
-        chown haseeb /usr/share/gnome-day-night-mode
+        chown -R haseeb /usr/share/gnome-day-night-mode/
         cd /usr/share/gnome-day-night-mode
 
-        if ! [ -x "$(solunar -c London)" ]; then
+        if ! [ -x "$(which solunar)" ]; then
             echo "solunar doesn't exist."
             echo "Installing solunar."
             git clone https://github.com/kevinboone/solunar_cmdline.git
@@ -48,8 +50,8 @@ case "$1" in
             rm -r solunar_cmdline
         fi
 
-        crontab -l -u $USER | echo "*/5 * * * * /usr/share/gnome-day-night-mode/day-night-cycle" | crontab -u $USER -
-        crontab -l -u $USER | echo "@reboot /usr/share/gnome-day-night-mode/day-night-cycle" | crontab -u $USER -
+        (crontab -l -u $user ; echo "*/5 * * * * /usr/share/gnome-day-night-mode/day-night-cycle") | crontab -u $user -
+        (crontab -l -u $user ; echo "@reboot /usr/share/gnome-day-night-mode/day-night-cycle") | crontab -u $user -
 
         echo "/usr/bin/solunar -c ${location} --syslocal | grep 'Sunrise\|Sunset' | grep -Eo '[0-9]' | tr -d '\n' | grep -Eo '[0-9]{4,4}" >> find-twilight
 

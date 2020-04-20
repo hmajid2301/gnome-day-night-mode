@@ -16,11 +16,15 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-
+. /usr/share/debconf/confmodule
 case "$1" in
     remove|upgrade|deconfigure)
-        crontab -l -u $USER | grep -v "*/5 * * * * /usr/share/gnome-day-night-mode/day-night-cycle" | crontab -u $USER -
-        crontab -l -u $USER | grep -v "@reboot /usr/share/gnome-day-night-mode/day-night-cycle" | crontab -u $USER -
+        db_get gnome-day-night-mode/user
+        user=$RET
+
+        crontab -l -u $user | grep -v "/usr/share/gnome-day-night-mode/day-night-cycle" | crontab -u $user -
+
+        db_stop
 
     ;;
 
