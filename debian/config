@@ -1,0 +1,11 @@
+#!/bin/bash -e
+. /usr/share/debconf/confmodule
+
+db_input high gnome-day-night-mode/user || true
+db_input high gnome-day-night-mode/location || true
+db_input high gnome-day-night-mode/day_mode_theme || true
+db_input high gnome-day-night-mode/night_mode_theme || true
+db_input high gnome-day-night-mode/day_mode_wallpaper || true
+db_input high gnome-day-night-mode/night_mode_wallpaper || true
+db_go
+db_stop

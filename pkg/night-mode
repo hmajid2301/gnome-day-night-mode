@@ -1,0 +1,3 @@
+#!/bin/bash
+PID=$(pgrep gnome-session | tail -n1)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | tr '\0' '\n' | sed -e s/DBUS_SESSION_BUS_ADDRESS=//)

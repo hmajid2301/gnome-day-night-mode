@@ -1,0 +1,16 @@
+.history/
+.vscode/
+.debhelper
+*.build*
+*.changes
+*.deb
+*.tar.xz
+*.dsc
+debian/gnome-day-night-mode/*
+
+files
+*-build-stamp
+*.debhelper
+*.substvars
+*.conf
+.venv/
