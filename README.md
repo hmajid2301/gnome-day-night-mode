@@ -36,6 +36,14 @@ debuild -i -us -uc -b
 sudo dpkg -i gnome-day-night-mode*.deb
 ```
 
+## Future Features
+
+- Rewrite in Python
+- Add a GUI
+- Allow multiple profiles (mid-day, evening etc)
+
 ## Appendix
 
-- [Taken from here](https://www.reddit.com/r/unixporn/comments/5crgng/gnome_when_people_ask_why_i_use_gnulinux/)
+- [Originally seen here](https://www.reddit.com/r/unixporn/comments/5crgng/gnome_when_people_ask_why_i_use_gnulinux/)
+- [Heavily inspired by](https://gist.github.com/Skehmatics/4c683abb2b612434aa304ecc09aad51d)
+- [Icon from FlatIcon](https://www.flaticon.com/free-icon/day_721213?term=day%20night&page=1&position=6)
