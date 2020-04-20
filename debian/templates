@@ -1,0 +1,28 @@
+Template: gnome-day-night-mode/location
+Type: string
+Description: Your location:
+ The city you currently live in i.e. `London
+
+Template: gnome-day-night-mode/day_mode_theme
+Type: string
+Description: The name of your day mode theme:
+ This should match the name of the theme in the `.themes`
+ folder. This is also the same name you'd see in
+ `gnome-tweaks-tool` i.e. `Canta`
+
+Template: gnome-day-night-mode/night_mode_theme
+Type: string
+Description: The name of your night mode theme:
+ This should match the name of the theme in the `.themes`
+ folder. This is also the same name you'd see in
+ `gnome-tweaks-tool` i.e. `Canta-dark`
+
+Template: gnome-day-night-mode/day_mode_wallpaper
+Type: string
+Description: The path of your day mode wallpaper:
+ The full path to your day mode wallpaper
+
+Template: gnome-day-night-mode/night_mode_wallpaper
+Type: string
+Description: The path of your night mode wallpaper:
+ The full path to your day mode wallpaper

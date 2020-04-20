@@ -1,0 +1,25 @@
+#!/bin/bash
+PID=$(pgrep gnome-session | tail -n1)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | tr '\0' '\n' | sed -e s/DBUS_SESSION_BUS_ADDRESS=//)
+
+echo "----------------------------------------"
+echo "Start time: $(date)"
+
+TIME="$(date '+%H%M')"
+CIVS="$(/usr/share/gnome-day-night-mode/find-twilight | cut -f1 -d\ )"
+CIVE="$(/usr/share/gnome-day-night-mode/find-twilight | cut -f2 -d\ )"
+
+echo "Daylight starts at $CIVS ends at $CIVE"
+if [ $TIME -ge $CIVS ] && [ $TIME -le $CIVE ] ; then
+    echo "Switching to Day mode"
+    RESP=exec /usr/share/gnome-day-night-mode/day-mode
+else
+    echo "Switching to Night mode"
+    RESP=exec /usr/share/gnome-day-night-mode/night-mode
+fi
+
+if [[ $RESP ]] ; then
+    echo "Switch Failure"
+else
+    echo "Switch Success"
+fi
