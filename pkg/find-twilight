@@ -1,2 +1,1 @@
 #!/bin/bash
-echo $(/usr/bin/solunar -c London --syslocal | grep 'Sunrise\|Sunset' | grep -Eo '[0-9]' | tr -d '\n' | grep -Eo '[0-9]{4,4}')

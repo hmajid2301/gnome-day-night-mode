@@ -53,15 +53,16 @@ case "$1" in
         (crontab -l -u $user ; echo "*/5 * * * * /usr/share/gnome-day-night-mode/day-night-cycle") | crontab -u $user -
         (crontab -l -u $user ; echo "@reboot /usr/share/gnome-day-night-mode/day-night-cycle") | crontab -u $user -
 
-        echo "/usr/bin/solunar -c ${location} --syslocal | grep 'Sunrise\|Sunset' | grep -Eo '[0-9]' | tr -d '\n' | grep -Eo '[0-9]{4,4}" >> find-twilight
+        echo "location=${location}" >> find-twilight
+        echo 'echo $(solunar -c ${location} --syslocal | grep "Sunrise\|Sunset" | grep -Eo "[0-9]" | tr -d "\n" | grep -Eo "[0-9]{4,4}")' >> find-twilight
 
-        echo "/usr/bin/gsettings set org.gnome.shell.extensions.user-theme name ${day_mode_theme}" >> day-mode
-        echo "/usr/bin/gsettings set org.gnome.desktop.interface gtk-theme ${day_mode_theme}" >> day-mode
-        echo "/usr/bin/gsettings set org.gnome.desktop.background picture-uri 'file://${day_mode_wallpaper}" >> day-mode
+        echo "/usr/bin/gsettings set org.gnome.shell.extensions.user-theme name '${day_mode_theme}'" >> day-mode
+        echo "/usr/bin/gsettings set org.gnome.desktop.interface gtk-theme '${day_mode_theme}'" >> day-mode
+        echo "/usr/bin/gsettings set org.gnome.desktop.background picture-uri 'file://${day_mode_wallpaper}'" >> day-mode
 
-        echo "/usr/bin/gsettings set org.gnome.shell.extensions.user-theme name ${night_mode_theme}" >> night-mode
-        echo "/usr/bin/gsettings set org.gnome.desktop.interface gtk-theme ${night_mode_theme}" >> night-mode
-        echo "/usr/bin/gsettings set org.gnome.desktop.background picture-uri 'file://${night_mode_wallpaper}" >> night-mode
+        echo "/usr/bin/gsettings set org.gnome.shell.extensions.user-theme name '${night_mode_theme}'" >> night-mode
+        echo "/usr/bin/gsettings set org.gnome.desktop.interface gtk-theme '${night_mode_theme}'" >> night-mode
+        echo "/usr/bin/gsettings set org.gnome.desktop.background picture-uri 'file://${night_mode_wallpaper}'" >> night-mode
 
         db_stop
 

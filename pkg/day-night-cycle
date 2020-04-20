@@ -10,7 +10,7 @@ CIVS="$(/usr/share/gnome-day-night-mode/find-twilight | cut -f1 -d\ )"
 CIVE="$(/usr/share/gnome-day-night-mode/find-twilight | cut -f2 -d\ )"
 
 echo "Daylight starts at $CIVS ends at $CIVE"
-if [ $TIME -ge $CIVS ] && [ $TIME -le $CIVE ] ; then
+if [[ $TIME -ge $CIVS ]] && [[ $TIME -le $CIVE ]] ; then
     echo "Switching to Day mode"
     RESP=exec /usr/share/gnome-day-night-mode/day-mode
 else
